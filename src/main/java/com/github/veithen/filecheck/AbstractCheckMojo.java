@@ -22,6 +22,8 @@ public abstract class AbstractCheckMojo extends AbstractMojo {
             scanner.scan();
             boolean[] matchedPatterns = new boolean[expectedFiles.length];
             List<String> unexpected = new ArrayList<String>();
+            int expectedCount = 0;
+            int allowedCount = 0;
             files: for (String file : scanner.getIncludedFiles()) {
                 boolean hasMatch = false;
                 for (int i=0; i<expectedFiles.length; i++) {
@@ -33,11 +35,13 @@ public abstract class AbstractCheckMojo extends AbstractMojo {
                     }
                 }
                 if (hasMatch) {
+                    expectedCount++;
                     continue;
                 }
                 if (allowedFiles != null) {
                     for (String allowedFile : allowedFiles) {
                         if (SelectorUtils.matchPath(allowedFile, file)) {
+                            allowedCount++;
                             continue files;
                         }
                     }
@@ -50,6 +54,7 @@ public abstract class AbstractCheckMojo extends AbstractMojo {
                     missing.add(expectedFiles[i]);
                 }
             }
+            getLog().info("Checked " + directory + ": " + expectedCount + " expected, " + allowedCount + " allowed, " + unexpected.size() + " unexpected, " + missing.size() + " missing");
             if (!missing.isEmpty()) {
                 throw new MojoExecutionException("The following files are missing in " + directory + ": " + StringUtils.join(missing.iterator(), ", "));
             }
