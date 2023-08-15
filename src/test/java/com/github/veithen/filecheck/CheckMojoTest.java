@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,15 +27,14 @@ import org.junit.Rule;
 import org.junit.Test;
 
 public class CheckMojoTest {
-    @Rule
-    public MojoRule rule = new MojoRule();
-    
-    @Test(expected=MojoExecutionException.class)
+    @Rule public MojoRule rule = new MojoRule();
+
+    @Test(expected = MojoExecutionException.class)
     public void testMissingFile() throws Exception {
         rule.lookupMojo("check", new File("src/test/files/pom-missing-file.xml")).execute();
     }
-    
-    @Test(expected=MojoExecutionException.class)
+
+    @Test(expected = MojoExecutionException.class)
     public void testUnexpectedFile() throws Exception {
         rule.lookupMojo("check", new File("src/test/files/pom-unexpected-file.xml")).execute();
     }
