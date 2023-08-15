@@ -53,7 +53,7 @@
     <properties>
         <github.repository>filecheck</github.repository>
         <javaVersion>1.8</javaVersion>
-        <maven.version>3.9.1</maven.version>
+        <maven.version>3.9.4</maven.version>
     </properties>
 
     <dependencies>
