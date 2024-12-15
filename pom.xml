@@ -133,7 +133,6 @@
                 <artifactId>license-maven-plugin</artifactId>
                 <configuration>
                     <projectName>Filecheck Maven Plugin</projectName>
-                    <licenseName>apache_v2</licenseName>
                 </configuration>
             </plugin>
         </plugins>
